@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents();
 builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
-builder.Services.AddSingleton<IViewInventoryByName, ViewInventoryByName>();
+
+builder.Services.AddTransient<IViewInventoryByName, ViewInventoryByName>();
+builder.Services.AddTransient<IAddInventory, AddInventory>();
 
 var app = builder.Build();
 

@@ -1,12 +1,22 @@
-using System;
+using IMS.Business;
+using IMS.UseCases.Inventory.Interfaces;
+using IMS.UseCases.PluginInterfaces;
 
 namespace IMS.UseCases.Inventory;
 
-public class AddInventory
+public class AddInventory : IAddInventory
 {
-    public async Task ExecuteAsync()
+    private readonly IInventoryRepository _inventoryRepository;
+
+    public AddInventory(IInventoryRepository inventoryRepository)
     {
-        // Add inventory logic here
+        _inventoryRepository = inventoryRepository;
+
+    }
+    public async Task ExecuteAsync(InventoryItem inventoryItem)
+    {
+        await _inventoryRepository.AddInventoryAsync(inventoryItem);
+
     }
 
 }
