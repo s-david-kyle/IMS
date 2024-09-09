@@ -1,0 +1,36 @@
+﻿@inject IViewInventoryByName ViewInventoryByName;
+
+<PageTitle>Test Page</PageTitle>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (inventoryItems is not null && inventoryItems.Count > 0)
+        {
+            foreach (var item in inventoryItems)
+            {
+                <InventoryListItem Item="item" />
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+
+    private List<InventoryItem>? inventoryItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        inventoryItems = (await ViewInventoryByName.ExecuteAsync()).ToList();
+    }
+}

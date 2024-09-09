@@ -1,0 +1,16 @@
+﻿@if (this.Item is not null)
+{
+    <tr>
+        <td>@Item.Name</td>
+        <td>@Item.Quantity</td>
+        <td>@Item.Price.ToString("c")</td>
+        <td>
+            <button type="button" class="btn btn-light btn-sm">Edit</button>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public InventoryItem? Item { get; set; }
+}
