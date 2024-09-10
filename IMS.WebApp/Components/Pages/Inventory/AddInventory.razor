@@ -1,7 +1,40 @@
 ﻿@page "/AddInventory"
 
+@inject IAddInventory InventoryService;
+@inject NavigationManager Navigation
+
 <h3>AddInventory</h3>
+<br />
+<EditForm Model="inventoryItem" FormName="formInventory" OnValidSubmit="Save">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="name">Item Name</label>
+        <InputText id="name" @bind-Value="inventoryItem.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <InputNumber id="quantity" @bind-Value="inventoryItem.Quantity" class="form-control" />
+        <ValidationMessage For="() => inventoryItem.Quantity" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <InputNumber id="price" @bind-Value="inventoryItem.Price" class="form-control" />
+        <ValidationMessage For="() => inventoryItem.Price" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a class="btn btn-secondary ml-10" href="/inventory">Cancel</a>
+</EditForm>
 
 @code {
+    [SupplyParameterFromForm]
+    private InventoryItem inventoryItem { get; set; } = new InventoryItem();
+
+    private async Task Save()
+    {
+        await InventoryService.ExecuteAsync(inventoryItem);
+        Navigation.NavigateTo("/inventory");
+    }
 
 }

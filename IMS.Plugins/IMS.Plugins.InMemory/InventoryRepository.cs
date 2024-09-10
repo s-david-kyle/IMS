@@ -14,7 +14,7 @@ public class InventoryRepository : IInventoryRepository
             new InventoryItem { Id = 1, Name = "Bike Seat", Quantity = 10, Price = 2 },
             new InventoryItem { Id = 2, Name = "Bike Body", Quantity = 10, Price = 15 },
             new InventoryItem { Id = 3, Name = "Bike Wheel", Quantity = 20, Price = 8 },
-            new InventoryItem { Id = 3, Name = "Bike Pedal", Quantity = 20, Price = 1 }
+            new InventoryItem { Id = 4, Name = "Bike Pedal", Quantity = 20, Price = 1 }
         };
 
     }
